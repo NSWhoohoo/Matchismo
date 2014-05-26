@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--Playing Card Game View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="CardGameViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,13 +15,240 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CT-Bi-nPN">
+                                <rect key="frame" x="92" y="20" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tHn-0P-owa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0a9-tV-6jJ">
+                                <rect key="frame" x="20" y="20" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d0V-g0-Chp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKW-bA-xy7">
+                                <rect key="frame" x="164" y="20" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Ou-3h-Yra"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAK-Dz-59n">
+                                <rect key="frame" x="236" y="20" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FIv-C6-IKx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8I-OV-3hb">
+                                <rect key="frame" x="92" y="124" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GBz-gA-LgE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LX-cr-cXw">
+                                <rect key="frame" x="20" y="124" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KBn-c7-KUe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ8-uv-HRd">
+                                <rect key="frame" x="164" y="124" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="i8e-09-Mno"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KE-qn-lxV">
+                                <rect key="frame" x="236" y="124" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JNc-2f-UrR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9Y-RB-szZ">
+                                <rect key="frame" x="92" y="228" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Gjy-k4-hEz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZg-Vy-4wn">
+                                <rect key="frame" x="20" y="228" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IwJ-fw-J8T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3N2-nH-46m">
+                                <rect key="frame" x="164" y="228" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1sn-0C-k9c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toQ-0a-Gz5">
+                                <rect key="frame" x="236" y="228" width="64" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="knZ-YO-EQK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biP-xd-aBd">
+                                <rect key="frame" x="20" y="527" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="8b3-NJ-GPf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ2-dp-i7Z">
+                                <rect key="frame" x="254" y="518" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Redeal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="redeal:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kmb-yw-RJn"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I82-6G-b3W">
+                                <rect key="frame" x="179" y="482" width="123" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="K37-is-j6Y"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="two"/>
+                                    <segment title="three"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xty-sl-xHn">
+                                <rect key="frame" x="136" y="453" width="48" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3N2-nH-46m" firstAttribute="leading" secondItem="s9Y-RB-szZ" secondAttribute="trailing" constant="8" symbolic="YES" id="1gs-xy-dNQ"/>
+                            <constraint firstItem="5KE-qn-lxV" firstAttribute="leading" secondItem="gJ8-uv-HRd" secondAttribute="trailing" constant="8" symbolic="YES" id="75Z-bt-JYI"/>
+                            <constraint firstItem="0a9-tV-6jJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="9w7-sy-sdm"/>
+                            <constraint firstItem="IAK-Dz-59n" firstAttribute="leading" secondItem="JKW-bA-xy7" secondAttribute="trailing" constant="8" symbolic="YES" id="AM9-HQ-x2Y"/>
+                            <constraint firstItem="gJ8-uv-HRd" firstAttribute="top" secondItem="JKW-bA-xy7" secondAttribute="bottom" constant="8" symbolic="YES" id="BZP-LQ-rNn"/>
+                            <constraint firstItem="0a9-tV-6jJ" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="EMK-cB-uZd"/>
+                            <constraint firstItem="8CT-Bi-nPN" firstAttribute="leading" secondItem="0a9-tV-6jJ" secondAttribute="trailing" constant="8" symbolic="YES" id="ESE-DH-GQj"/>
+                            <constraint firstItem="s9Y-RB-szZ" firstAttribute="leading" secondItem="yZg-Vy-4wn" secondAttribute="trailing" constant="8" symbolic="YES" id="Frj-ja-BuL"/>
+                            <constraint firstItem="7LX-cr-cXw" firstAttribute="top" secondItem="0a9-tV-6jJ" secondAttribute="bottom" constant="8" symbolic="YES" id="HKl-XG-228"/>
+                            <constraint firstItem="s8I-OV-3hb" firstAttribute="top" secondItem="8CT-Bi-nPN" secondAttribute="bottom" constant="8" symbolic="YES" id="LmX-we-trL"/>
+                            <constraint firstItem="3N2-nH-46m" firstAttribute="top" secondItem="gJ8-uv-HRd" secondAttribute="bottom" constant="8" symbolic="YES" id="NI5-yS-Zp3"/>
+                            <constraint firstItem="s8I-OV-3hb" firstAttribute="leading" secondItem="7LX-cr-cXw" secondAttribute="trailing" constant="8" symbolic="YES" id="Nbk-U2-IGK"/>
+                            <constraint firstItem="JKW-bA-xy7" firstAttribute="top" secondItem="IAK-Dz-59n" secondAttribute="top" id="NcI-iN-WLf"/>
+                            <constraint firstItem="8CT-Bi-nPN" firstAttribute="top" secondItem="0a9-tV-6jJ" secondAttribute="top" id="QV4-sh-HBH"/>
+                            <constraint firstItem="JKW-bA-xy7" firstAttribute="leading" secondItem="8CT-Bi-nPN" secondAttribute="trailing" constant="8" symbolic="YES" id="QeS-Rh-KDq"/>
+                            <constraint firstItem="gJ8-uv-HRd" firstAttribute="leading" secondItem="s8I-OV-3hb" secondAttribute="trailing" constant="8" symbolic="YES" id="TF8-sh-YA4"/>
+                            <constraint firstItem="toQ-0a-Gz5" firstAttribute="top" secondItem="5KE-qn-lxV" secondAttribute="bottom" constant="8" symbolic="YES" id="UhS-jc-Bl8"/>
+                            <constraint firstItem="xty-sl-xHn" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Ulq-if-Bab"/>
+                            <constraint firstItem="IZ2-dp-i7Z" firstAttribute="bottom" secondItem="biP-xd-aBd" secondAttribute="bottom" id="afk-In-I3v"/>
+                            <constraint firstItem="I82-6G-b3W" firstAttribute="trailing" secondItem="IZ2-dp-i7Z" secondAttribute="trailing" id="d0e-In-ZbV"/>
+                            <constraint firstItem="7LX-cr-cXw" firstAttribute="leading" secondItem="yZg-Vy-4wn" secondAttribute="leading" id="dpR-kt-kSE"/>
+                            <constraint firstItem="I82-6G-b3W" firstAttribute="top" secondItem="xty-sl-xHn" secondAttribute="bottom" constant="8" id="e8o-5t-hAh"/>
+                            <constraint firstAttribute="trailing" secondItem="I82-6G-b3W" secondAttribute="trailing" constant="18" id="ieJ-Br-kmx"/>
+                            <constraint firstItem="biP-xd-aBd" firstAttribute="leading" secondItem="yZg-Vy-4wn" secondAttribute="leading" id="jXj-kh-M6w"/>
+                            <constraint firstItem="yZg-Vy-4wn" firstAttribute="top" secondItem="7LX-cr-cXw" secondAttribute="bottom" constant="8" symbolic="YES" id="jbu-B4-8hR"/>
+                            <constraint firstItem="IZ2-dp-i7Z" firstAttribute="top" secondItem="I82-6G-b3W" secondAttribute="bottom" constant="8" symbolic="YES" id="lh4-T6-09U"/>
+                            <constraint firstItem="s9Y-RB-szZ" firstAttribute="top" secondItem="s8I-OV-3hb" secondAttribute="bottom" constant="8" symbolic="YES" id="oRj-R8-wkG"/>
+                            <constraint firstItem="7LX-cr-cXw" firstAttribute="leading" secondItem="0a9-tV-6jJ" secondAttribute="leading" id="tpy-VY-eq8"/>
+                            <constraint firstAttribute="bottom" secondItem="biP-xd-aBd" secondAttribute="bottom" constant="20" symbolic="YES" id="vFj-BP-FNZ"/>
+                            <constraint firstItem="5KE-qn-lxV" firstAttribute="top" secondItem="IAK-Dz-59n" secondAttribute="bottom" constant="8" symbolic="YES" id="xQb-Zd-Wju"/>
+                            <constraint firstItem="8CT-Bi-nPN" firstAttribute="top" secondItem="JKW-bA-xy7" secondAttribute="top" id="zKX-hD-LVI"/>
+                            <constraint firstItem="toQ-0a-Gz5" firstAttribute="leading" secondItem="3N2-nH-46m" secondAttribute="trailing" constant="8" symbolic="YES" id="zq3-R1-wvU"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="modeControl" destination="I82-6G-b3W" id="L7w-Mj-zba"/>
+                        <outlet property="pointsLabel" destination="xty-sl-xHn" id="sZx-4x-K7e"/>
+                        <outlet property="scoreLabel" destination="biP-xd-aBd" id="wkH-qE-R3u"/>
+                        <outletCollection property="cards" destination="0a9-tV-6jJ" id="gOD-p8-JsE"/>
+                        <outletCollection property="cards" destination="8CT-Bi-nPN" id="79G-ms-L0z"/>
+                        <outletCollection property="cards" destination="JKW-bA-xy7" id="OVc-Lo-fk9"/>
+                        <outletCollection property="cards" destination="IAK-Dz-59n" id="td1-mG-s76"/>
+                        <outletCollection property="cards" destination="7LX-cr-cXw" id="IQA-0K-PwZ"/>
+                        <outletCollection property="cards" destination="s8I-OV-3hb" id="yMx-As-ihl"/>
+                        <outletCollection property="cards" destination="gJ8-uv-HRd" id="VNg-HU-27I"/>
+                        <outletCollection property="cards" destination="5KE-qn-lxV" id="ci1-zv-RVB"/>
+                        <outletCollection property="cards" destination="yZg-Vy-4wn" id="PLr-1b-ddT"/>
+                        <outletCollection property="cards" destination="s9Y-RB-szZ" id="erC-cx-YCB"/>
+                        <outletCollection property="cards" destination="3N2-nH-46m" id="o2d-6s-LAD"/>
+                        <outletCollection property="cards" destination="toQ-0a-Gz5" id="apf-yk-4fZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="0.0" y="54"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cardback" width="64" height="96"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
