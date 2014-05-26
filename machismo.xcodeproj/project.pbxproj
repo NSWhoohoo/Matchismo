@@ -26,7 +26,8 @@
 		8C9B69C918FD6152006B262B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9B69A818FD614F006B262B /* Foundation.framework */; };
 		8C9B69CA18FD6152006B262B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9B69AC18FD614F006B262B /* UIKit.framework */; };
 		8C9B69D218FD6153006B262B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C9B69D018FD6153006B262B /* InfoPlist.strings */; };
-		8C9B69D418FD6153006B262B /* machismoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9B69D318FD6153006B262B /* machismoTests.m */; };
+		8C9B9BC919335972005CF93B /* PlayingCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9B9BC819335972005CF93B /* PlayingCardTests.m */; };
+		8C9CC5A0193373F300D58E64 /* CardMatchingGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9CC59F193373F300D58E64 /* CardMatchingGameTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +71,8 @@
 		8C9B69C718FD6152006B262B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8C9B69CF18FD6153006B262B /* machismoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "machismoTests-Info.plist"; sourceTree = "<group>"; };
 		8C9B69D118FD6153006B262B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8C9B69D318FD6153006B262B /* machismoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = machismoTests.m; sourceTree = "<group>"; };
+		8C9B9BC819335972005CF93B /* PlayingCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardTests.m; sourceTree = "<group>"; };
+		8C9CC59F193373F300D58E64 /* CardMatchingGameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGameTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +177,8 @@
 		8C9B69CD18FD6152006B262B /* machismoTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C9B69D318FD6153006B262B /* machismoTests.m */,
+				8C9B9BC819335972005CF93B /* PlayingCardTests.m */,
+				8C9CC59F193373F300D58E64 /* CardMatchingGameTests.m */,
 				8C9B69CE18FD6153006B262B /* Supporting Files */,
 			);
 			path = machismoTests;
@@ -304,7 +307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C9B69D418FD6153006B262B /* machismoTests.m in Sources */,
+				8C9CC5A0193373F300D58E64 /* CardMatchingGameTests.m in Sources */,
+				8C9B9BC919335972005CF93B /* PlayingCardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

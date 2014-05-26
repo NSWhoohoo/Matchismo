@@ -50,6 +50,12 @@
     return [NSString stringWithFormat:@"%@%@", [PlayingCard validRanks][self.rank], self.suit];
 }
 
+/// Example: [1♥, 5♣, 7♣, 2♥]
+/// 1♥ match 5♣  0, 1♥ match 7♣  0, 1♥ match 2♥  1
+/// 5♣ match 7♣  1, 5♣ match 2♥  0
+/// 7♣ match 2♥  0
+/// return 2 points
+
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;

@@ -39,7 +39,8 @@
     
     if (self) {
         for (int i = 1; i <= number; i++) {
-            Card* card = [deck drawRandomCard];
+#warning change to drawCardFromTop for testing, should be change to drawRandomCard eventually
+            Card* card = [deck drawCardFromTop];
             if (card) {
                 [self.cards addObject:card];
             } else {
@@ -64,29 +65,26 @@
     
     self.cardMatchingScore = 0;
     if (!card.isMatched) {
-        if (card.isChosen) {
+        if (card.isChosen) {  // flip back a card
             card.chosen = NO;
             [self.cardsToMatch removeObject:card];
-        } else {
-            for (Card* otherCard in self.cards) {
-                if (!otherCard.isMatched && otherCard.isChosen) {
-                    [self.cardsToMatch addObject:otherCard];
-                    if (self.cardsToMatch.count == self.mode-1) {
-                        int matchingScore = [card match:self.cardsToMatch];
-                        if (matchingScore) {
-                            self.cardMatchingScore = matchingScore*MATCH_BONUS;
-                            card.matched = YES;
-                            [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToMatch)];
-                        } else {
-                            [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToUnchosen)];
-                            [self.cardsToMatch removeAllObjects];
-                            self.cardMatchingScore = MISMATCH_PANELTY;
-                        }
-                        self.score += self.cardMatchingScore;
-                        [self.cardsToMatch addObject:card];
-                        break;
-                    }
+        } else {  // flip over a card
+            if (self.cardsToMatch.count == self.mode) {  // no cards to match
+                [self.cardsToMatch removeAllObjects];
+            } else if(self.cardsToMatch.count == self.mode-1){  // enough cards to try a match
+                int matchingScore = [card match:self.cardsToMatch];
+                if (matchingScore) {  // find match, all cards marked matched
+                    self.cardMatchingScore = matchingScore*MATCH_BONUS;
+                    card.matched = YES;
+                    [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToMatch)];
+                } else {  // no match, flip back other cards
+                    [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToUnchosen)];
+                    self.cardMatchingScore = MISMATCH_PANELTY;
                 }
+                self.score += self.cardMatchingScore;
+                [self.cardsToMatch addObject:card];
+            } else {  // not enough cards to try a match
+                [self.cardsToMatch addObject:card];
             }
             card.chosen = YES;
             self.score -= CHOOSE_COST;

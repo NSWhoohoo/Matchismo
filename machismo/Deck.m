@@ -49,4 +49,16 @@
     return card;
 }
 
+- (Card *)drawCardFromTop
+{
+    Card* card = nil;
+    
+    if (self.cards.count) {
+        card = [self.cards firstObject];
+        [self.cards removeObject:card];
+    }
+    
+    return card;
+}
+
 @end
