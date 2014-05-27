@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "CardMatchingGame.h"
+#import "PlayingCard.h"
 
 @interface CardMatchingGameTests : XCTestCase
 @property (nonatomic, strong)CardMatchingGame* game;
@@ -21,20 +22,25 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     /// [1♥, 5♣, 7♣, 2♥]   [@"♣︎", @"♥︎", @"♦︎", @"♠︎"]
     /// create game from the deck above
-    Card* card1 = [[Card alloc]init];
-    card1.content = @"1♥︎";
+    PlayingCard* card1 = [[PlayingCard alloc]init];
+    card1.suit = @"♥︎";
+    card1.rank = 1;
     
-    Card* card2 = [[Card alloc]init];
-    card2.content = @"5♣︎";
+    PlayingCard* card2 = [[PlayingCard alloc]init];
+    card2.suit = @"♣︎";
+    card2.rank = 5;
     
-    Card* card3 = [[Card alloc]init];
-    card3.content = @"7♣︎";
+    PlayingCard* card3 = [[PlayingCard alloc]init];
+    card3.suit = @"♣︎";
+    card3.rank = 7;
     
-    Card* card4 = [[Card alloc]init];
-    card4.content = @"2♥︎";
+    PlayingCard* card4 = [[PlayingCard alloc]init];
+    card4.suit = @"♥︎";
+    card4.rank = 2;
     
-    Card* card5 = [[Card alloc]init];
-    card5.content = @"8♦︎";
+    PlayingCard* card5 = [[PlayingCard alloc]init];
+    card5.suit = @"♦︎";
+    card5.rank = 8;
     
     Deck* deck = [[Deck alloc]init];
     [deck addCard:card1];
@@ -43,7 +49,7 @@
     [deck addCard:card4];
     [deck addCard:card5];
     
-    self.game = [[CardMatchingGame alloc]initWithDeck:deck andNumber:4];
+    self.game = [[CardMatchingGame alloc]initWithDeck:deck andNumber:5];
     self.game.mode = 3;
 }
 
@@ -60,7 +66,7 @@
     XCTAssertEqual(self.game.score, -1, @"wrong score");
     XCTAssertEqual(self.game.cardMatchingScore, 0, @"wrong matching score");
     Card* card = [self.game cardAtIndex:0];
-    XCTAssertEqualObjects(card.content, @"1♥︎", @"chosen wrong card");
+    XCTAssertEqualObjects(card.content, @"A♥︎", @"chosen wrong card");
     
     NSArray* cardArray = self.game.cardsTryMatching;
     XCTAssertEqualObjects(cardArray, @[card], @"invalid cardsTryMatching");
@@ -96,11 +102,11 @@
     Card* card0 = [self.game cardAtIndex:0];
     Card* card1 = [self.game cardAtIndex:1];
     Card* card2 = [self.game cardAtIndex:2];
-    XCTAssertEqualObjects(card1.content, @"5♣︎", @"chosen wrong card");
+    XCTAssertEqualObjects(card2.content, @"7♣︎", @"chosen wrong card");
     
     NSArray* cardArray = self.game.cardsTryMatching;
     XCTAssertEqualObjects([cardArray firstObject], card0, @"invalid cardsTryMatching");
-    XCTAssertEqualObjects(cardArray[1], card0, @"invalid cardsTryMatching");
+    XCTAssertEqualObjects(cardArray[1], card1, @"invalid cardsTryMatching");
     XCTAssertEqualObjects([cardArray lastObject], card2, @"invalid cardsTryMatching");
     
     XCTAssertTrue(card0.isChosen, @"card is not chosen");
@@ -116,6 +122,24 @@
     [self.game chooseCardAtIndex:0];
     [self.game chooseCardAtIndex:1];
     [self.game chooseCardAtIndex:4];
+    XCTAssertEqual(self.game.score, -2-1-2, @"wrong score");
+    XCTAssertEqual(self.game.cardMatchingScore, -2, @"wrong matching score");
+    Card* card0 = [self.game cardAtIndex:0];
+    Card* card1 = [self.game cardAtIndex:1];
+    Card* card2 = [self.game cardAtIndex:4];
+    XCTAssertEqualObjects(card2.content, @"8♦︎", @"chosen wrong card");
+    
+    NSArray* cardArray = self.game.cardsTryMatching;
+    XCTAssertEqualObjects([cardArray firstObject], card0, @"invalid cardsTryMatching");
+    XCTAssertEqualObjects(cardArray[1], card1, @"invalid cardsTryMatching");
+    XCTAssertEqualObjects([cardArray lastObject], card2, @"invalid cardsTryMatching");
+    
+    XCTAssertFalse(card0.isChosen, @"card should not be chosen");
+    XCTAssertFalse(card1.isChosen, @"card should not be chosen");
+    XCTAssertTrue(card2.isChosen, @"card should be chosen");
+    XCTAssertFalse(card0.isMatched, @"card is not chosen");
+    XCTAssertFalse(card1.isMatched, @"card is not chosen");
+    XCTAssertFalse(card2.isMatched, @"card is not chosen");
 }
 
 
