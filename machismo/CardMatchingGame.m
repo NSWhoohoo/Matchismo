@@ -39,8 +39,8 @@
     
     if (self) {
         for (int i = 1; i <= number; i++) {
-#warning change to drawCardFromTop for testing, should be change to drawRandomCard eventually
-            Card* card = [deck drawCardFromTop];
+// #warning change to drawCardFromTop for testing, should be change to drawRandomCard eventually
+            Card* card = [deck drawRandomCard];
             if (card) {
                 [self.cards addObject:card];
             } else {

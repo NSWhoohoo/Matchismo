@@ -71,7 +71,7 @@
 
 - (IBAction)tap:(UIButton *)sender {
     self.modeControl.enabled = NO;
-    self.game.mode = self.modeControl.selectedSegmentIndex+2;
+    self.game.mode = (int)self.modeControl.selectedSegmentIndex+2;
     NSUInteger index = [self.cards indexOfObject:sender];
     [self.game chooseCardAtIndex:index];
     [self updateUI];
