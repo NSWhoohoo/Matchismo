@@ -56,6 +56,7 @@
 #define MISMATCH_PANELTY -2;
 #define CHOOSE_COST 1;
 
+/*
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
     if (index >= self.cards.count) {
@@ -70,12 +71,13 @@
             [self.cardsToMatch removeObject:card];
         } else {  // flip over a card
             if (self.cardsToMatch.count == self.mode) {  // just finished a match
-                /*
-                for (Card* cardToMatch in self.cardsToMatch) {
-                    if (cardToMatch.isMatched || !cardToMatch.isChosen) {
-                        [self.cardsToMatch removeObject:cardToMatch];
-                    }
-                } */
+ 
+//                for (Card* cardToMatch in self.cardsToMatch) {
+//                    if (cardToMatch.isMatched || !cardToMatch.isChosen) {
+//                        [self.cardsToMatch removeObject:cardToMatch];
+//                    }
+//                }
+ 
                 for (int i = 0; i < self.cardsToMatch.count; i++) {
                     Card* cardToMatch = self.cardsToMatch[i];
                     if (cardToMatch.isMatched || !cardToMatch.isChosen) {
@@ -100,6 +102,45 @@
                 [self.cardsToMatch addObject:card];
             }
             card.chosen = YES;
+            self.score -= CHOOSE_COST;
+        }
+    }
+}
+*/
+
+- (void)chooseCardAtIndex:(NSUInteger)index
+{
+    if (index >= self.cards.count) {
+        [NSException raise:NSRangeException format:@"choosing card out of the game allows"];
+    }
+    Card* card = self.cards[index];
+    if (!card.isMatched) {
+        if (card.isChosen) {
+            card.chosen = NO;
+            [self.cardsToMatch removeObject:card];
+        } else {
+            [self.cardsToMatch removeAllObjects];
+            self.cardMatchingScore = 0;
+            for (Card* otherCard in self.cards) {
+                if (otherCard.isChosen&&!otherCard.isMatched) {
+                    [self.cardsToMatch addObject:otherCard];
+                }
+            }
+            if (self.mode == self.cardsTryMatching.count+1) {
+                self.cardMatchingScore = [card match:self.cardsToMatch];
+                if (self.cardMatchingScore) {
+                    self.cardMatchingScore = self.cardMatchingScore*MATCH_BONUS;
+                    card.matched = YES;
+                    [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToMatch)];
+                } else {
+                    [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToUnchosen)];
+                    self.cardMatchingScore = MISMATCH_PANELTY;
+                }
+            }
+            
+            self.score += self.cardMatchingScore;
+            card.chosen = YES;
+            [self.cardsToMatch addObject:card];
             self.score -= CHOOSE_COST;
         }
     }

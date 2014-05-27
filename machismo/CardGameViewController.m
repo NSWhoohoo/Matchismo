@@ -51,22 +51,12 @@
 - (void)updateTouchCardMatchingDescription
 {
         if (self.game.cardMatchingScore > 0) {  // find a match
-            self.matchingDescLabel.text = [NSString stringWithFormat:@"Matched %@ for %d points", [self getMatchingCardsContent], self.game.cardMatchingScore];
+            self.matchingDescLabel.text = [NSString stringWithFormat:@"Matched %@ for %d points", [self.game.cardsTryMatching componentsJoinedByString:@" "], self.game.cardMatchingScore];
         } else if (self.game.cardMatchingScore < 0) {  // did not match
-            self.matchingDescLabel.text = [NSString stringWithFormat:@"%@ don't match! %d points penalty", [self getMatchingCardsContent], -self.game.cardMatchingScore];
+            self.matchingDescLabel.text = [NSString stringWithFormat:@"%@ don't match! %d points penalty", [self.game.cardsTryMatching componentsJoinedByString:@" "], -self.game.cardMatchingScore];
         } else {  // not enough card to perform a match
-            self.matchingDescLabel.text = [self getMatchingCardsContent];
+            self.matchingDescLabel.text = [self.game.cardsTryMatching componentsJoinedByString:@" "];
         }
-}
-
-- (NSString*)getMatchingCardsContent
-{
-    NSMutableArray* cardsArr = [[NSMutableArray alloc]init];
-    for (int i = 0; i < self.game.cardsTryMatching.count; i++) {
-        NSString* cardContent = [self.game.cardsTryMatching[i] content];
-        [cardsArr addObject:cardContent];
-    }
-    return [cardsArr componentsJoinedByString:@" "];
 }
 
 - (IBAction)tap:(UIButton *)sender {

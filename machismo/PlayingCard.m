@@ -18,7 +18,7 @@
 
 + (NSArray *)validSuits
 {
-    // return @[@"♣︎", @"♥︎", @"♦︎", @"♠︎"]; no color but used in testing
+//    return @[@"♣︎", @"♥︎", @"♦︎", @"♠︎"]; // no color but used in testing
     return @[@"♣", @"♥", @"♦", @"♠︎"];
 }
 

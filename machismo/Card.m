@@ -34,4 +34,9 @@
     self.matched = YES;
 }
 
+- (NSString *)description
+{
+    return self.content;
+}
+
 @end
