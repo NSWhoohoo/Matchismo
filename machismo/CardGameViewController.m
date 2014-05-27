@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, strong)CardMatchingGame* game;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *matchingDescLabel;
 
 @end
 
@@ -45,16 +45,33 @@
         button.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    [self updateTouchCardButtonDescriptionLabel];
+    [self updateTouchCardMatchingDescription];
 }
 
-- (void)updateTouchCardButtonDescriptionLabel
+- (void)updateTouchCardMatchingDescription
 {
-    
+        if (self.game.cardMatchingScore > 0) {  // find a match
+            self.matchingDescLabel.text = [NSString stringWithFormat:@"Matched %@ for %d points", [self getMatchingCardsContent], self.game.cardMatchingScore];
+        } else if (self.game.cardMatchingScore < 0) {  // did not match
+            self.matchingDescLabel.text = [NSString stringWithFormat:@"%@ don't match! %d points penalty", [self getMatchingCardsContent], -self.game.cardMatchingScore];
+        } else {  // not enough card to perform a match
+            self.matchingDescLabel.text = [self getMatchingCardsContent];
+        }
+}
+
+- (NSString*)getMatchingCardsContent
+{
+    NSMutableArray* cardsArr = [[NSMutableArray alloc]init];
+    for (int i = 0; i < self.game.cardsTryMatching.count; i++) {
+        NSString* cardContent = [self.game.cardsTryMatching[i] content];
+        [cardsArr addObject:cardContent];
+    }
+    return [cardsArr componentsJoinedByString:@" "];
 }
 
 - (IBAction)tap:(UIButton *)sender {
     self.modeControl.enabled = NO;
+    self.game.mode = self.modeControl.selectedSegmentIndex+2;
     NSUInteger index = [self.cards indexOfObject:sender];
     [self.game chooseCardAtIndex:index];
     [self updateUI];

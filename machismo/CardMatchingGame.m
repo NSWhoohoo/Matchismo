@@ -69,8 +69,21 @@
             card.chosen = NO;
             [self.cardsToMatch removeObject:card];
         } else {  // flip over a card
-            if (self.cardsToMatch.count == self.mode) {  // no cards to match
-                [self.cardsToMatch removeAllObjects];
+            if (self.cardsToMatch.count == self.mode) {  // just finished a match
+                /*
+                for (Card* cardToMatch in self.cardsToMatch) {
+                    if (cardToMatch.isMatched || !cardToMatch.isChosen) {
+                        [self.cardsToMatch removeObject:cardToMatch];
+                    }
+                } */
+                for (int i = 0; i < self.cardsToMatch.count; i++) {
+                    Card* cardToMatch = self.cardsToMatch[i];
+                    if (cardToMatch.isMatched || !cardToMatch.isChosen) {
+                        [self.cardsToMatch removeObject:cardToMatch];
+                        i--;
+                    }
+                }
+                if (self.cardsToMatch.count)  [self chooseCardAtIndex:index];
             } else if(self.cardsToMatch.count == self.mode-1){  // enough cards to try a match
                 int matchingScore = [card match:self.cardsToMatch];
                 if (matchingScore) {  // find match, all cards marked matched

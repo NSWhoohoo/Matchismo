@@ -18,7 +18,8 @@
 
 + (NSArray *)validSuits
 {
-    return @[@"♣︎", @"♥︎", @"♦︎", @"♠︎"];
+    // return @[@"♣︎", @"♥︎", @"♦︎", @"♠︎"]; no color but used in testing
+    return @[@"♣", @"♥", @"♦", @"♠︎"];
 }
 
 + (NSUInteger)maxRank
