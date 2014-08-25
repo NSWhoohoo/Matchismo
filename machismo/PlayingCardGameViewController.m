@@ -20,4 +20,9 @@
     return [[PlayingCardDeck alloc]init];
 }
 
+- (int)gameMode
+{
+    return 2;
+}
+
 @end

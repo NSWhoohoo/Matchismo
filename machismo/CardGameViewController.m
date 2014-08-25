@@ -7,6 +7,7 @@
 //
 
 #import "CardGameViewController.h"
+#import "GameHistoryViewController.h"
 #import "CardMatchingGame.h"
 #import "PlayingCardDeck.h"
 
@@ -15,19 +16,34 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, strong)CardMatchingGame* game;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
 @property (weak, nonatomic) IBOutlet UILabel *matchingDescLabel;
+@property (strong, nonatomic)NSMutableArray* historyDesc;
 
 @end
 
 @implementation CardGameViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self updateUI];
+}
+
 - (CardMatchingGame *)game
 {
     if (!_game) {
         _game = [[CardMatchingGame alloc]initWithDeck:[self createDeck] andNumber:self.cards.count];
+        _game.mode = [self gameMode];
     }
     return _game;
+}
+
+- (NSArray *)historyDesc
+{
+    if (!_historyDesc) {
+        _historyDesc = [[NSMutableArray alloc]init];
+    }
+    return _historyDesc;
 }
 
 - (Deck*)createDeck  // abstract
@@ -35,12 +51,17 @@
     return nil;
 }
 
+- (int)gameMode  // abstract
+{
+    return 0;
+}
+
 -(void)updateUI
 {
     for (UIButton* button in self.cards) {
         NSUInteger cardIndex = [self.cards indexOfObject:button];
         Card* card = [self.game cardAtIndex:cardIndex];
-        [button setTitle:[self titleofCard:card] forState:UIControlStateNormal] ;
+        [button setAttributedTitle:[self titleofCard:card] forState:UIControlStateNormal] ;
         [button setBackgroundImage:[self backgroundOfCard:card] forState:UIControlStateNormal];
         button.enabled = !card.isMatched;
     }
@@ -50,37 +71,58 @@
 
 - (void)updateTouchCardMatchingDescription
 {
-        if (self.game.cardMatchingScore > 0) {  // find a match
-            self.matchingDescLabel.text = [NSString stringWithFormat:@"Matched %@ for %d points", [self.game.cardsTryMatching componentsJoinedByString:@" "], self.game.cardMatchingScore];
-        } else if (self.game.cardMatchingScore < 0) {  // did not match
-            self.matchingDescLabel.text = [NSString stringWithFormat:@"%@ don't match! %d points penalty", [self.game.cardsTryMatching componentsJoinedByString:@" "], -self.game.cardMatchingScore];
-        } else {  // not enough card to perform a match
-            self.matchingDescLabel.text = [self.game.cardsTryMatching componentsJoinedByString:@" "];
-        }
+    NSMutableAttributedString* desc;
+    
+    if (self.game.cardMatchingScore > 0) {  // find a match
+        desc = [[NSMutableAttributedString alloc]initWithString:@"Matched "];
+        [desc appendAttributedString:[self descriptionOfTryMatchingCards:self.game.cardsTryMatching]];
+        [desc appendAttributedString:[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"for %d points!", self.game.cardMatchingScore]]];
+        [self.historyDesc addObject:desc];
+    } else if (self.game.cardMatchingScore < 0) {  // did not match
+        desc = [[self descriptionOfTryMatchingCards:self.game.cardsTryMatching] mutableCopy];
+        [desc appendAttributedString:[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"don't match! %d points penalty", -self.game.cardMatchingScore]]];
+        // [desc.mutableString appendFormat:@"don't match! %d points penalty", -self.game.cardMatchingScore];
+        [self.historyDesc addObject:desc];
+    } else {  // not enough card to perform a match
+        desc = [[self descriptionOfTryMatchingCards:self.game.cardsTryMatching] mutableCopy];
+    }
+    
+    self.matchingDescLabel.attributedText = desc;
+}
+
+- (NSAttributedString *)descriptionOfTryMatchingCards:(NSArray *)cards
+{
+    NSString* desc = [cards componentsJoinedByString:@", "];
+    return [[NSAttributedString alloc]initWithString:desc];
 }
 
 - (IBAction)tap:(UIButton *)sender {
-    self.modeControl.enabled = NO;
-    self.game.mode = (int)self.modeControl.selectedSegmentIndex+2;
     NSUInteger index = [self.cards indexOfObject:sender];
     [self.game chooseCardAtIndex:index];
     [self updateUI];
 }
 
-- (IBAction)redeal:(UIButton *)sender {
+- (IBAction)redeal:(UIBarButtonItem *)sender {
     self.game = nil;
-    self.modeControl.enabled = YES;
     [self updateUI];
 }
     
-- (NSString*)titleofCard:(Card*)card
+- (NSAttributedString*)titleofCard:(Card*)card
 {
-    return (card.isChosen) ? card.content : @"";
+    return (card.isChosen) ? [[NSAttributedString alloc]initWithString:card.content] : nil;
 }
 
 - (UIImage*)backgroundOfCard:(Card*)card
 {
     return [UIImage imageNamed:(card.isChosen ? @"cardfront" : @"cardback")];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[GameHistoryViewController class]]) {
+        GameHistoryViewController* historyVC = (GameHistoryViewController *)segue.destinationViewController;
+        historyVC.results = [self.historyDesc copy];
+    }
 }
 
 @end

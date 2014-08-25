@@ -11,6 +11,13 @@
 
 @interface CardGameViewController : UIViewController
 
+// abstract
 - (Deck*)createDeck;
+- (int)gameMode;
+
+// overridable
+- (NSAttributedString*)titleofCard:(Card*)card;
+- (NSAttributedString *)descriptionOfTryMatchingCards:(NSArray *)cards;
+- (UIImage*)backgroundOfCard:(Card*)card;
 
 @end
