@@ -7,6 +7,7 @@
 //
 
 #import "SetPlayingCardGameViewController.h"
+#import "SetPlayingCardView.h"
 
 @interface SetPlayingCardGameViewController ()
 
@@ -58,6 +59,38 @@
 - (int)gameMode
 {
     return 3;
+}
+
+- (int)initCardNumber
+{
+    return 12;
+}
+
+-(BOOL)removeMatchedCards
+{
+    return YES;
+}
+
+- (void)updateCardView:(UIView *)cardView withCard:(Card *)card
+{
+    SetPlayingCardView* view = (SetPlayingCardView *)cardView;
+    SetPlayingCard* setCard = (SetPlayingCard *)card;
+    
+    view.number = setCard.number;
+    view.symbol = setCard.symbol;
+    view.shading = setCard.shading;
+    view.color = setCard.color;
+    view.chosen = setCard.isChosen;
+}
+
+- (NSArray *)getCardViewNumber:(int)number
+{
+    NSMutableArray* cards = [[NSMutableArray alloc]init];
+    for (int i = 0; i < number; i++) {
+        SetPlayingCardView* card = [[SetPlayingCardView alloc]init];
+        [cards addObject:card];
+    }
+    return [cards copy];
 }
 
 - (UIImage*)backgroundOfCard:(Card *)card

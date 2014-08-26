@@ -71,7 +71,6 @@
                 isMatch = true;
             }
     }
-    
     return isMatch;
 }
 

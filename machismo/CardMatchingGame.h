@@ -18,5 +18,6 @@
 - (NSArray*)cardsTryMatching;
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card*)cardAtIndex:(NSUInteger)index;
+- (BOOL)addCardsNumber:(NSUInteger)number;
 
 @end

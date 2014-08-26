@@ -13,6 +13,7 @@
 @property (nonatomic, readwrite)int cardMatchingScore;
 @property (nonatomic, strong)NSMutableArray* cards; // of Card
 @property (nonatomic, strong)NSMutableArray* cardsToMatch; // chosen but unmatched cards from chooseCardAtIndex before
+@property (nonatomic, strong)Deck* deck;
 @end
 
 @implementation CardMatchingGame
@@ -38,6 +39,7 @@
     self = [super init];
     
     if (self) {
+        self.deck = deck;
         for (int i = 1; i <= number; i++) {
 // #warning change to drawCardFromTop for testing, should be change to drawRandomCard eventually
             Card* card = [deck drawRandomCard];
@@ -50,6 +52,21 @@
     }
 
     return self;
+}
+
+-(BOOL)addCardsNumber:(NSUInteger)number
+{
+    NSMutableArray* arr = [[NSMutableArray alloc]init];
+    for (int i = 1; i <= number; i++) {
+        Card* card = [self.deck drawRandomCard];
+        if (card) {
+            [arr addObject:card];
+        } else {
+            return NO;
+        }
+    }
+    [self.cards addObjectsFromArray:arr];
+    return YES;
 }
 
 #define MATCH_BONUS 4;

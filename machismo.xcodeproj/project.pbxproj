@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E0A202819AB3A1F00AF725A /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0A202719AB3A1F00AF725A /* Grid.m */; };
+		1E94C00919AB9D34007E5F4B /* SetPlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E94C00819AB9D34007E5F4B /* SetPlayingCardView.m */; };
 		1EB7DB3A19A9D13500EE8E62 /* SetPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7DB3919A9D13500EE8E62 /* SetPlayingCard.m */; };
 		1EB7DB6C19A9E65400EE8E62 /* SetPlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7DB6B19A9E65400EE8E62 /* SetPlayingCardGameViewController.m */; };
 		1EB7DB6F19A9E75100EE8E62 /* SetPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7DB6E19A9E75100EE8E62 /* SetPlayingCardDeck.m */; };
 		1EB7DB7219A9F3A700EE8E62 /* GameHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7DB7119A9F3A700EE8E62 /* GameHistoryViewController.m */; };
+		1EF7039C19AB5CDD00CD5902 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7039B19AB5CDD00CD5902 /* PlayingCardView.m */; };
 		8C910D33191F6FA700F61DF8 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C910D32191F6FA700F61DF8 /* Deck.m */; };
 		8C910D36191F752700F61DF8 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C910D35191F752700F61DF8 /* PlayingCard.m */; };
 		8C910D39191FB46B00F61DF8 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C910D38191FB46B00F61DF8 /* PlayingCardDeck.m */; };
@@ -45,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E0A202619AB3A1F00AF725A /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		1E0A202719AB3A1F00AF725A /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		1E94C00719AB9D34007E5F4B /* SetPlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPlayingCardView.h; sourceTree = "<group>"; };
+		1E94C00819AB9D34007E5F4B /* SetPlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPlayingCardView.m; sourceTree = "<group>"; };
 		1EB7DB3819A9D13500EE8E62 /* SetPlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPlayingCard.h; sourceTree = "<group>"; };
 		1EB7DB3919A9D13500EE8E62 /* SetPlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPlayingCard.m; sourceTree = "<group>"; };
 		1EB7DB6A19A9E65400EE8E62 /* SetPlayingCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPlayingCardGameViewController.h; sourceTree = "<group>"; };
@@ -53,6 +60,8 @@
 		1EB7DB6E19A9E75100EE8E62 /* SetPlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPlayingCardDeck.m; sourceTree = "<group>"; };
 		1EB7DB7019A9F3A700EE8E62 /* GameHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryViewController.h; sourceTree = "<group>"; };
 		1EB7DB7119A9F3A700EE8E62 /* GameHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryViewController.m; sourceTree = "<group>"; };
+		1EF7039A19AB5CDD00CD5902 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
+		1EF7039B19AB5CDD00CD5902 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
 		8C910D31191F6FA700F61DF8 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		8C910D32191F6FA700F61DF8 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		8C910D34191F752700F61DF8 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
@@ -166,10 +175,16 @@
 			isa = PBXGroup;
 			children = (
 				8C9B69BA18FD6151006B262B /* Main.storyboard */,
+				1E0A202619AB3A1F00AF725A /* Grid.h */,
+				1E0A202719AB3A1F00AF725A /* Grid.m */,
 				8C99F10219211B8500435EA2 /* CardGameViewController.h */,
 				8C99F10319211B8500435EA2 /* CardGameViewController.m */,
+				1EF7039A19AB5CDD00CD5902 /* PlayingCardView.h */,
+				1EF7039B19AB5CDD00CD5902 /* PlayingCardView.m */,
 				8C99F0FC192103F100435EA2 /* PlayingCardGameViewController.h */,
 				8C99F0FD192103F100435EA2 /* PlayingCardGameViewController.m */,
+				1E94C00719AB9D34007E5F4B /* SetPlayingCardView.h */,
+				1E94C00819AB9D34007E5F4B /* SetPlayingCardView.m */,
 				1EB7DB6A19A9E65400EE8E62 /* SetPlayingCardGameViewController.h */,
 				1EB7DB6B19A9E65400EE8E62 /* SetPlayingCardGameViewController.m */,
 				1EB7DB7019A9F3A700EE8E62 /* GameHistoryViewController.h */,
@@ -314,6 +329,9 @@
 				8C910D36191F752700F61DF8 /* PlayingCard.m in Sources */,
 				1EB7DB6F19A9E75100EE8E62 /* SetPlayingCardDeck.m in Sources */,
 				8C910D33191F6FA700F61DF8 /* Deck.m in Sources */,
+				1E0A202819AB3A1F00AF725A /* Grid.m in Sources */,
+				1E94C00919AB9D34007E5F4B /* SetPlayingCardView.m in Sources */,
+				1EF7039C19AB5CDD00CD5902 /* PlayingCardView.m in Sources */,
 				8C9B69B918FD6151006B262B /* CardGameAppDelegate.m in Sources */,
 				8C910D3C191FB60900F61DF8 /* CardMatchingGame.m in Sources */,
 				8C910D39191FB46B00F61DF8 /* PlayingCardDeck.m in Sources */,
@@ -452,7 +470,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "machismo/machismo-Prefix.pch";
 				INFOPLIST_FILE = "machismo/machismo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -465,7 +485,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "machismo/machismo-Prefix.pch";
 				INFOPLIST_FILE = "machismo/machismo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

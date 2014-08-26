@@ -14,10 +14,14 @@
 // abstract
 - (Deck*)createDeck;
 - (int)gameMode;
+- (int)initCardNumber;
+- (void)updateCardView:(UIView *)cardView withCard:(Card *)card;
+- (NSArray *)getCardViewNumber:(int)number;
 
 // overridable
 - (NSAttributedString*)titleofCard:(Card*)card;
 - (NSAttributedString *)descriptionOfTryMatchingCards:(NSArray *)cards;
 - (UIImage*)backgroundOfCard:(Card*)card;
+- (BOOL)removeMatchedCards;
 
 @end
