@@ -21,7 +21,6 @@
 @property (strong, nonatomic)NSMutableArray* historyDesc;
 @property (strong, nonatomic)Grid* grid;
 @property (strong, nonatomic)UIDynamicAnimator* animator;
-@property (strong, nonatomic)NSMutableArray* attachmentArray;
 @property (strong, nonatomic)NSMutableArray* attachmentLength;
 @property (nonatomic)BOOL stacked;
 @end
@@ -76,14 +75,6 @@
         _animator = [[UIDynamicAnimator alloc]init];
     }
     return _animator;
-}
-
-- (NSMutableArray *)attachmentArray
-{
-    if (!_attachmentArray) {
-        _attachmentArray = [[NSMutableArray alloc]init];
-    }
-    return _attachmentArray;
 }
 
 - (NSMutableArray *)attachmentLength
@@ -177,16 +168,22 @@
         self.animator = nil;
         for (UIView* card in self.cards) {
             UIAttachmentBehavior* attachment = [[UIAttachmentBehavior alloc]initWithItem:card attachedToAnchor:self.containerView.center];
-            [self.attachmentArray addObject:attachment];
             [self.attachmentLength addObject:@([self distanceBetween:self.containerView.center and:card.center])];
             [self.animator addBehavior:attachment];
         }
     } else if (sender.state == UIGestureRecognizerStateChanged) {
-        for (UIAttachmentBehavior* attach in self.attachmentArray) {
+        NSMutableArray* attachments = [[NSMutableArray alloc]init];
+        for (UIDynamicBehavior* behavior in self.animator.behaviors) {
+            if ([behavior isKindOfClass:[UIAttachmentBehavior class]]) {
+                [attachments addObject:behavior];
+            }
+        }        
+        
+        for (UIAttachmentBehavior* attach in attachments) {
             attach.length = attach.length * sender.scale;
         }
-        for (int i = 0; i < self.attachmentArray.count; i++) {
-            UIAttachmentBehavior* attach = self.attachmentArray[i];
+        for (int i = 0; i < attachments.count; i++) {
+            UIAttachmentBehavior* attach = attachments[i];
             attach.length = [self.attachmentLength[i] floatValue] * sender.scale;
         }
     } else if (sender.state == UIGestureRecognizerStateEnded) {
