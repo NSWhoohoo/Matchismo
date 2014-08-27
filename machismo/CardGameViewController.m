@@ -11,7 +11,7 @@
 #import "CardMatchingGame.h"
 #import "Grid.h"
 
-@interface CardGameViewController ()
+@interface CardGameViewController () <UIDynamicAnimatorDelegate>
 
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -73,6 +73,7 @@
 {
     if (!_animator) {
         _animator = [[UIDynamicAnimator alloc]init];
+        _animator.delegate = self;
     }
     return _animator;
 }
@@ -96,6 +97,12 @@
         }
     }
     return _cards;
+}
+
+#pragma mark - animator delegate
+- (void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator
+{
+    self.animator = nil;
 }
 
 #pragma mark - inputs
@@ -125,26 +132,27 @@
     
     
 - (void)tap:(UITapGestureRecognizer *)sender {
-    self.animator = nil;
-    if (!self.stacked) {
-        UIView* card = sender.view;
-        NSUInteger index = [self.cards indexOfObject:card];
-        [self.game chooseCardAtIndex:index];
-        [self updateUI];
-    }else {
-        UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:self.cards];
-        item.resistance = 40.0;
-        [self.animator addBehavior:item];
-        for (int i = 0; i < self.cards.count; i++) {
-            UIView* card = self.cards[i];
-            card.center = self.containerView.center;
-            CGPoint destination;
-            int row = i / self.grid.columnCount;
-            int column = i - row * (int)self.grid.columnCount;
-            destination = [self.grid centerOfCellAtRow:row inColumn:column];
-            UISnapBehavior* snap = [[UISnapBehavior alloc]initWithItem:card snapToPoint:destination];
-            [self.animator addBehavior:snap];
-            self.stacked = NO;
+    if (!_animator) {
+        if (!self.stacked) {
+            UIView* card = sender.view;
+            NSUInteger index = [self.cards indexOfObject:card];
+            [self.game chooseCardAtIndex:index];
+            [self updateUI];
+        }else {
+            UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:self.cards];
+            item.resistance = 40.0;
+            [self.animator addBehavior:item];
+            for (int i = 0; i < self.cards.count; i++) {
+                UIView* card = self.cards[i];
+                card.center = self.containerView.center;
+                CGPoint destination;
+                int row = i / self.grid.columnCount;
+                int column = i - row * (int)self.grid.columnCount;
+                destination = [self.grid centerOfCellAtRow:row inColumn:column];
+                UISnapBehavior* snap = [[UISnapBehavior alloc]initWithItem:card snapToPoint:destination];
+                [self.animator addBehavior:snap];
+                self.stacked = NO;
+            }
         }
     }
 }
@@ -177,7 +185,7 @@
             if ([behavior isKindOfClass:[UIAttachmentBehavior class]]) {
                 [attachments addObject:behavior];
             }
-        }        
+        }
         
         for (UIAttachmentBehavior* attach in attachments) {
             attach.length = attach.length * sender.scale;
@@ -189,7 +197,7 @@
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         self.animator = nil;
         UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:self.cards];
-        item.resistance = 40.0;
+        item.allowsRotation = NO;
         [self.animator addBehavior:item];
         for (int i = 0; i < self.cards.count; i++) {
             UIView* card = self.cards[i];
