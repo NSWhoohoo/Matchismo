@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
+#import "GameSettings.h"
 
 @interface CardMatchingGame : NSObject
 

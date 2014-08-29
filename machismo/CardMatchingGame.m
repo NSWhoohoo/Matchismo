@@ -14,6 +14,7 @@
 @property (nonatomic, strong)NSMutableArray* cards; // of Card
 @property (nonatomic, strong)NSMutableArray* cardsToMatch; // chosen but unmatched cards from chooseCardAtIndex before
 @property (nonatomic, strong)Deck* deck;
+@property (nonatomic, strong)GameSettings* settings;
 @end
 
 @implementation CardMatchingGame
@@ -32,6 +33,14 @@
         _cardsToMatch = [[NSMutableArray alloc]init];
     }
     return _cardsToMatch;
+}
+
+- (GameSettings *)settings
+{
+    if (!_settings) {
+        _settings = [[GameSettings alloc]init];
+    }
+    return _settings;
 }
 
 -(instancetype)initWithDeck:(Deck *)deck andNumber:(NSUInteger)number
@@ -146,19 +155,19 @@
             if (self.mode == self.cardsTryMatching.count+1) {
                 self.cardMatchingScore = [card match:self.cardsToMatch];
                 if (self.cardMatchingScore) {
-                    self.cardMatchingScore = self.cardMatchingScore*MATCH_BONUS;
+                    self.cardMatchingScore = self.cardMatchingScore*self.settings.matchBonus;
                     card.matched = YES;
                     [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToMatch)];
                 } else {
                     [self.cardsToMatch makeObjectsPerformSelector:@selector(turnToUnchosen)];
-                    self.cardMatchingScore = MISMATCH_PANELTY;
+                    self.cardMatchingScore = -self.settings.mismatchPanelty;
                 }
             }
             
             self.score += self.cardMatchingScore;
             card.chosen = YES;
             [self.cardsToMatch addObject:card];
-            self.score -= CHOOSE_COST;
+            self.score -= self.settings.chooseCost;
         }
     }
 }

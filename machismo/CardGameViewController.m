@@ -10,6 +10,7 @@
 #import "GameHistoryViewController.h"
 #import "CardMatchingGame.h"
 #import "Grid.h"
+#import "ScoreResult.h"
 
 @interface CardGameViewController () <UIDynamicAnimatorDelegate>
 
@@ -23,9 +24,16 @@
 @property (strong, nonatomic)UIDynamicAnimator* animator;
 @property (strong, nonatomic)NSMutableArray* attachmentLength;
 @property (nonatomic)BOOL stacked;
+@property (strong, nonatomic)ScoreResult* gameResult;
 @end
 
 @implementation CardGameViewController
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    NSLog(@"%@", NSStringFromCGRect(self.containerView.frame));
+}
 
 #pragma mark - abstract
 
@@ -53,6 +61,11 @@
     return nil;
 }
 
+- (NSString *)gameType
+{
+    return nil;
+}
+
 #pragma mark - overridable
 - (BOOL)removeMatchedCards
 {
@@ -65,6 +78,8 @@
     if (!_game) {
         _game = [[CardMatchingGame alloc]initWithDeck:[self createDeck] andNumber:self.cards.count];
         _game.mode = [self gameMode];
+        self.gameResult = [[ScoreResult alloc]init];
+        self.gameResult.gameType = [self gameType];
     }
     return _game;
 }
@@ -102,12 +117,21 @@
 #pragma mark - animator delegate
 - (void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator
 {
+    NSArray* gestures = self.containerView.gestureRecognizers;
+    for (UIGestureRecognizer* gesture in gestures) {
+        if ([gesture isKindOfClass:[UIPinchGestureRecognizer class]]) {
+            if (gesture.state == UIGestureRecognizerStateChanged || gesture.state == UIGestureRecognizerStateEnded) {
+                return;
+            }
+        }
+    }
     self.animator = nil;
 }
 
 #pragma mark - inputs
 - (IBAction)redeal:(UIButton *)sender {
     self.game = nil;
+    self.gameResult = nil;
     [UIView animateWithDuration:1.0 animations:^{
         for (UIView* card in self.cards) {
             card.center = CGPointMake(0, self.view.bounds.size.height);
@@ -138,6 +162,7 @@
             NSUInteger index = [self.cards indexOfObject:card];
             [self.game chooseCardAtIndex:index];
             [self updateUI];
+
         }else {
             UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:self.cards];
             item.resistance = 40.0;
@@ -180,6 +205,9 @@
             [self.animator addBehavior:attachment];
         }
     } else if (sender.state == UIGestureRecognizerStateChanged) {
+        if (sender.scale > 1) {
+            return;
+        }
         NSMutableArray* attachments = [[NSMutableArray alloc]init];
         for (UIDynamicBehavior* behavior in self.animator.behaviors) {
             if ([behavior isKindOfClass:[UIAttachmentBehavior class]]) {
@@ -242,8 +270,10 @@
     [self layoutCards];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     [self updateTouchCardMatchingDescription];
+    self.gameResult.score = self.game.score;
 }
 
+#define CARDSPACINGINPERCENT 0.08
 #define CELL_ASPECT_RATION 4.0/6.0
 - (void)layoutCards
 {
@@ -262,7 +292,8 @@
                 card.center = CGPointMake(self.view.bounds.size.width, self.view.bounds.size.height);
             }
             [UIView animateWithDuration:1.0 delay:i/10.0 options:0 animations:^{
-                card.frame = [self.grid frameOfCellAtRow:row inColumn:column];
+                CGRect frame = [self.grid frameOfCellAtRow:row inColumn:column];
+                card.frame = CGRectMake(frame.origin.x+frame.size.width*CARDSPACINGINPERCENT/2.0, frame.origin.y+frame.size.height*CARDSPACINGINPERCENT/2.0, frame.size.width*(1-CARDSPACINGINPERCENT), frame.size.height*(1-CARDSPACINGINPERCENT));
             } completion:nil];
         }
     } else{
@@ -303,8 +334,6 @@
     [super viewDidAppear:animated];
     [self updateUI];
 }
-
-
 
 
 #pragma mark - older code

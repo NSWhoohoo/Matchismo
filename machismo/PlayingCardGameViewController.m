@@ -31,6 +31,11 @@
     return 35;
 }
 
+- (NSString *)gameType
+{
+    return @"PlayingCard";
+}
+
 - (NSArray *)getCardViewNumber:(int)number
 {
     NSMutableArray* cards = [[NSMutableArray alloc]init];

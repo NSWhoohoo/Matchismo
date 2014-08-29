@@ -17,6 +17,7 @@
 - (int)initCardNumber;
 - (void)updateCardView:(UIView *)cardView withCard:(Card *)card;
 - (NSArray *)getCardViewNumber:(int)number;
+- (NSString *)gameType;
 
 // overridable
 - (NSAttributedString*)titleofCard:(Card*)card;

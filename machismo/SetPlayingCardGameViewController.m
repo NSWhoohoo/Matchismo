@@ -66,6 +66,11 @@
     return 12;
 }
 
+- (NSString *)gameType
+{
+    return @"SetCard";
+}
+
 -(BOOL)removeMatchedCards
 {
     return YES;
